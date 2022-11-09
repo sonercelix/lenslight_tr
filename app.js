@@ -1,21 +1,27 @@
 import express from "express";
+import dotenv from "dotenv";
+import conn from "./db.js";
+
+dotenv.config();
+
+//connection to the DB
+conn();
+
 const app = express();
 const port = 3000;
 
+//ejs template engine
+app.set("view engine", "ejs");
+
+//static files middleware
+app.use(express.static("public"));
+
 app.get("/", (req, res) => {
-  res.send("Index sayfası");
+  res.render("index");
 });
 
-app.get("/login", (req, res) => {
-  res.send("Login sayfası");
-});
-
-app.get("/delete", (req, res) => {
-  res.send("delete sayfası");
-});
-
-app.get("/list", (req, res) => {
-  res.send("Makale listeleme sayfası");
+app.get("/about", (req, res) => {
+  res.render("about");
 });
 
 app.listen(port, () => {
