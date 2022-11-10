@@ -2,13 +2,14 @@ import mongoose from "mongoose";
 
 const conn = () => {
   console.log(process.env.DB_URI);
+  const option = {
+    dbName: "lenslight_tr",
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  };
 
   mongoose
-    .connect(process.env.DB_URI, {
-      dbName: "lenslight_tr",
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
+    .connect(process.env.DB_URI, option)
     .then(() => {
       console.log("connected");
     })
